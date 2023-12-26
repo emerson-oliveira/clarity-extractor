@@ -76,7 +76,9 @@ const generateReport = async () => {
 
     jsonSave(reportData, `${currentDate.toISOString().split(`T`)[0]}`);
 
-    await saveDataSheet(reportData, SPREADSHEET_ID, CLIENT_EMAIL, PRIVATE_KEY);
+    if(!(SPREADSHEET_ID.trim() == "" || CLIENT_EMAIL.trim() == "" || PRIVATE_KEY.trim() == "")) {
+      await saveDataSheet(reportData, SPREADSHEET_ID, CLIENT_EMAIL, PRIVATE_KEY);
+    }
 
     await browser.close();
     process.exit(1);
