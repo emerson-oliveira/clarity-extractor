@@ -1,7 +1,7 @@
 const datetimeUrl = (dataInicial, dataFinal, baseUrl) => {
-    const startTimestamp = new Date(dataInicial); 
-    const endTimestamp = new Date(dataFinal); 
-    
+    const startTimestamp = new Date(new Date(dataInicial).setHours(0,0,0)); 
+    const endTimestamp = new Date(new Date(dataFinal).setHours(23,59,59));
+
     const startDate = startTimestamp.getTime();
     const endDate = endTimestamp.getTime();
     
