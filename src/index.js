@@ -12,14 +12,14 @@ const {
   PRIVATE_KEY,
 } = process.env;
 
-const datetimeUrl = require('../utils/datatime');
+const datetimeUrl = require('../utils/datetime');
 const jsonSave = require("../utils/json");
 const report = require("../utils/report");
 const googleLogin = require("../utils/gmail");
 const saveDataSheet = require("../utils/sheet");
 
 const WAIT_TIME = 3000;
-const NUMBER_OF_DAYS = 2;
+const NUMBER_OF_DAYS = 1;
 
 const createProgressBar = () => {
   const bar = new cliProgress.SingleBar(
@@ -64,7 +64,7 @@ const generateReport = async () => {
       currentDay++;
       await page.waitForTimeout(WAIT_TIME);
       
-      const dashboardUrl = await datetimeUrl(date.getDate() - 1, date, BASEURL, "PC");
+      const dashboardUrl = await datetimeUrl(date, date, BASEURL);
       await page.goto(dashboardUrl);
 
       const data = [...(await report(page, date))];
